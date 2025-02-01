@@ -1,19 +1,11 @@
-import time
-import schedule
-from plyer import notification
+import os
 
 def send_journal_reminder():
-    notification.notify(
-        title="📖 Journal Reminder",
-        message="Take a moment to reflect and write in your journal!",
-        timeout=10
-    )
+    message = "Take a moment to reflect and write in your journal!"
+    title = "📖 Journal Reminder"
+    os.system(f'''osascript -e 'display notification "{message}" with title "{title}"' ''')
 
-# Schedule script to run every day at 4:10 AM
-schedule.every().day.at("04:10").do(send_journal_reminder)
+send_journal_reminder()
 
 print("Journal reminder script running... Press Ctrl+C to stop.")
 
-while True:
-    schedule.run_pending()
-    time.sleep(60)  
